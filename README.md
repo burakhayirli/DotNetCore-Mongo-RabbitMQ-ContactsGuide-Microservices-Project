@@ -52,6 +52,7 @@ If you want to use swagger you should go to following url:
 - [ ] Implement Autofac
 - [ ] Implement one of IdentityApi, IdentityServer or Manual JWT Handler
 - [ ] Prepare dockerfiles and docker-compose.yml files For Each Microservices
+- [ ] Use Adapter Pattern for outer api connections
 - [ ] Modify README.md
 - [ ] Do not be lazy! Work hard!
 - [ ] Do not forget read book!
