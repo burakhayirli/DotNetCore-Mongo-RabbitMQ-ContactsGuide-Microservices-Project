@@ -31,7 +31,7 @@ If you want to use swagger you should go to following url:
   Contact Microservice API => http://localhost:5005/swagger/index.html
   Report Microservice API => http://localhost:5006/swagger/index.html
   ```
- ![alt text](https://github.com/burakhayirli/DotNetCore-Mongo-RabbitMQ-ContactsGuide-Microservices-Project/blob/master/images/ContactApiSwagger.PNG)
+ ![alt text](https://github.com/burakhayirli/DotNetCore-Mongo-RabbitMQ-ContactsGuide-Microservices-Project/blob/master/images/ContactApiSwaggerr.PNG)
  ![alt text](https://github.com/burakhayirli/DotNetCore-Mongo-RabbitMQ-ContactsGuide-Microservices-Project/blob/master/images/ReportApiSwagger.PNG)
 
 # Used Technologies and Packages Stack
