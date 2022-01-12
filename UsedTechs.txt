@@ -1,0 +1,18 @@
+MongoDB.Driver
+ClosedXML
+
+
+docker run --name contactsguidemongodb -d -p 27017:27017 mongo
+ContactsGuideDb
+
+docker run --name contactsguidereportmongodb -d -p 27018:27017 mongo
+ContactsGuideReportDb
+
+dotnet dev-certs https --trust
+
+
+Not Implemented
+
+Identity / JWT
+FluentValidation
+AutoMapper
