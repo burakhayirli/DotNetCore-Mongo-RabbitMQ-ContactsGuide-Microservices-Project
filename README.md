@@ -1,4 +1,4 @@
-# DotNetCore-Couchbase-TodoApp-WebApi
+# Dot Net Core Contacts Guide Microservice Project
 
 # Prerequests
 
