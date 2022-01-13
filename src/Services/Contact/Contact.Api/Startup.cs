@@ -1,7 +1,4 @@
-using AutoMapper;
-using Contact.Api.Mapping;
 using Contact.Domain;
-using Contact.Domain.Entities;
 using Contact.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,19 +35,12 @@ namespace Contact.Api
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            });
+            });           
 
             //services.Configure<DatabaseSettings>(Configuration.GetSection("DatabaseSettings"));
             //services.AddSingleton<IDatabaseSettings>(sp=> {
             //    return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
             //});
-
-            var mapperConfig = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new MappingProfile());
-            });
-            services.AddSingleton(mapperConfig.CreateMapper());
-
 
             services.AddSwaggerGen(c =>
             {

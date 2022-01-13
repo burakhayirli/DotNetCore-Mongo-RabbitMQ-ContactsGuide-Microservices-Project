@@ -1,13 +1,13 @@
-﻿using Contact.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Contact.Domain.Dtos
 {
-    public class ContactInfoDto: IDto
+    public class ContactDto
     {
+        //public string PersonId { get; set; }
         public ContactType ContactType { get; set; }
-        public string Info { get; set; }
+        public string ContactInfo { get; set; }
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Report.Domain
 {
-    public class ContactInfo
+    public class Contact
     {
         public ContactType ContactType { get; set; }
-        public string Info { get; set; }
+        public string ContactInfo { get; set; }
     }
 
     public enum ContactType

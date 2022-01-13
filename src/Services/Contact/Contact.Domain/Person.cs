@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Contact.Domain.Entities
+namespace Contact.Domain
 {
     public class Person : BaseEntity
     {
@@ -11,6 +11,6 @@ namespace Contact.Domain.Entities
         public string Company { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
-        public List<ContactInfo> ContactInfos { get; set; } = new List<ContactInfo>();
+        public List<Contact> Contacts { get; set; } = new List<Contact>();
     }
 }

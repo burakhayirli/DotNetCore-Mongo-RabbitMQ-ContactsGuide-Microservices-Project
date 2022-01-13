@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Contact.Domain.Dtos
 {
-    public class ViewPersonDto: IDto
+    public class ViewPersonDto
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -12,6 +12,6 @@ namespace Contact.Domain.Dtos
         public string Company { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public List<ContactInfoDto> ContactInfos { get; set; } = new List<ContactInfoDto>();
+        public List<ContactDto> Contacts { get; set; } = new List<ContactDto>();
     }
 }

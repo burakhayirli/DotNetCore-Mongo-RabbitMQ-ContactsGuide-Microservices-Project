@@ -13,6 +13,6 @@ namespace Report.Domain
         public string Company { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
-        public List<ContactInfo> ContactInfos { get; set; } = new List<ContactInfo>();
+        public List<Contact> Contacts { get; set; } = new List<Contact>();
     }
 }

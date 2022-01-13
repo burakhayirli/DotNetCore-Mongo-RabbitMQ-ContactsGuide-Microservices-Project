@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Contact.Domain.Entities
+namespace Contact.Domain
 {
     public interface IEntity<TKey>
     {
