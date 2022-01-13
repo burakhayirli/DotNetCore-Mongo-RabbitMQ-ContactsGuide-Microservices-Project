@@ -12,6 +12,7 @@ namespace Contact.Api.Mapping
             CreateMap<Person, UpdatePersonDto>().ReverseMap();
             CreateMap<Person, ViewPersonDto>().ReverseMap();
             CreateMap<ContactInfo, ContactInfoDto>().ReverseMap();
+
         }
     }
 }
