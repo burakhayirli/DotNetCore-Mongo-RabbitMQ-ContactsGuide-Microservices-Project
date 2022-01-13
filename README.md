@@ -38,6 +38,7 @@ If you want to use swagger you should go to following url:
 
 - Asp.Net Core 5 (.Net 5)
 - MongoDb.Driver
+- AutoMapper
 - ClosedXML
 - RabbitMQ
 - Swashbuckle.AspNetCore (Used for Swagger UI)
@@ -46,8 +47,6 @@ If you want to use swagger you should go to following url:
 
 - [ ] Prepare xUnit or nUnit Tests
 - [ ] Implement Moq Framework for Unit Tests
-- [ ] AutoMapper
-- [ ] Use Data Transfer Objects in Controllers
 - [ ] Implement Fluent Validation
 - [ ] Implement Autofac
 - [ ] Implement one of IdentityApi, IdentityServer or Manual JWT Handler
