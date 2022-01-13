@@ -3,12 +3,14 @@ using Contact.Api.Mapping;
 using Contact.Domain;
 using Contact.Domain.Entities;
 using Contact.Repository;
+using ContactGuide.Shared.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 namespace Contact.Api
 {
@@ -24,6 +26,13 @@ namespace Contact.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                });
+
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
 
@@ -69,6 +78,9 @@ namespace Contact.Api
             }
 
             //app.UseHttpsRedirection();
+            //app.ConfigureCustomExceptionMiddleware();
+            app.UseCustomExceptionMiddleware();
+
             app.UseCors();
 
             app.UseRouting();
