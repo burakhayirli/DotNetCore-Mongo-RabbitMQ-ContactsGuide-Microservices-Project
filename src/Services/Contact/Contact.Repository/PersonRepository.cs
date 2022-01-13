@@ -9,7 +9,7 @@ namespace Contact.Repository
     {
         private readonly IDbContext<Person> _context;
 
-        public PersonRepository(IDbContext<Domain.Entities.Person> context) : base(context)
+        public PersonRepository(IDbContext<Person> context) : base(context)
         {
             _context = context;
         }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Contact.Domain.Dtos
 {
-    public class UpdatePersonDto:IDto
+    public class UpdatePersonDto : IDto
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Company { get; set; }

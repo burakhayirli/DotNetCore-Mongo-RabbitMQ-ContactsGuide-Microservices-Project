@@ -78,8 +78,6 @@ namespace Contact.Api
             }
 
             //app.UseHttpsRedirection();
-            //app.ConfigureCustomExceptionMiddleware();
-            app.UseCustomExceptionMiddleware();
 
             app.UseCors();
 
@@ -87,7 +85,7 @@ namespace Contact.Api
 
             app.UseAuthorization();
 
-            //app.AddTBExceptionHandlingMiddleware();
+            app.UseCustomExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>
             {

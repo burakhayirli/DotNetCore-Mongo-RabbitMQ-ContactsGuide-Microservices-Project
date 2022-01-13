@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using Contact.Api.ValidationRules.FluentValidation;
 using Contact.Domain;
 using Contact.Domain.Dtos;
 using Contact.Domain.Entities;
 using Contact.Repository;
+using ContactGuide.Shared.Aspects.Autofac.Validation;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -39,10 +42,18 @@ namespace Contact.Api.Controllers
             if (result.Success) return Ok(_mapper.Map<ViewPersonDto>(result.Data));
             return BadRequest(result.Message);
         }
-
+        
         [HttpPost]
+        //[ValidationAspect(typeof(CreatePersonDtoValidator), Priority = 1)]
         public async Task<IActionResult> Post([FromBody] CreatePersonDto person)
         {
+            CreatePersonDtoValidator val = new CreatePersonDtoValidator();
+            var valResult = val.Validate(person);
+            if (!valResult.IsValid)
+            {
+                //throw new ValidationException(valResult.Errors);
+                return BadRequest(valResult.Errors);
+            }
             var result = await _personRepository.SaveAsync(_mapper.Map<Person>(person));
             if (result.Success) return Ok(_mapper.Map<ViewPersonDto>(result.Data));
             return BadRequest(result.Message);
@@ -51,9 +62,19 @@ namespace Contact.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody] UpdatePersonDto updatePerson)
         {
+            UpdatePersonDtoValidator val = new UpdatePersonDtoValidator();
+            UpdatePersonDto updatedPerson = updatePerson;
+            updatedPerson.Id = id;
+
+            var valResult = val.Validate(updatedPerson);
+            if (!valResult.IsValid)
+            {
+                return BadRequest(valResult.Errors);
+            }
+
             var person = await _personRepository.GetAsync(id);
             if (!person.Success) return BadRequest(person.Message);
-
+            
             var updateModel = _mapper.Map<Person>(updatePerson);
             updateModel.Id = id;
 
