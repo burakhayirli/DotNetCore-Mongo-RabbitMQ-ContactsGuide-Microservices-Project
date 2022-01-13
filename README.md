@@ -38,6 +38,7 @@ If you want to use swagger you should go to following url:
 
 - Asp.Net Core 5 (.Net 5)
 - MongoDb.Driver
+- AutoMapper
 - ClosedXML
 - RabbitMQ
 - Swashbuckle.AspNetCore (Used for Swagger UI)
