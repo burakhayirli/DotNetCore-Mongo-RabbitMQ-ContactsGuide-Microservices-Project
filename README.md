@@ -39,6 +39,10 @@ If you want to use swagger you should go to following url:
 - Asp.Net Core 5 (.Net 5)
 - MongoDb.Driver
 - AutoMapper
+- Autofac
+- Autofac.Extras.DynamicProxy (with Castle)
+- Autofac.Extensions.DependencyInjection
+- FluentValidation
 - ClosedXML
 - RabbitMQ
 - Swashbuckle.AspNetCore (Used for Swagger UI)
@@ -47,8 +51,6 @@ If you want to use swagger you should go to following url:
 
 - [ ] Prepare xUnit or nUnit Tests
 - [ ] Implement Moq Framework for Unit Tests
-- [ ] Implement Fluent Validation
-- [ ] Implement Autofac
 - [ ] Implement one of IdentityApi, IdentityServer or Manual JWT Handler (No need for this project)
 - [ ] Prepare dockerfiles and docker-compose.yml files For Each Microservices
 - [ ] Modify README.md
