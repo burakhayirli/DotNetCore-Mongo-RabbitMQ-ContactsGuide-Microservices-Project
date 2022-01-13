@@ -11,7 +11,7 @@ docker run --name contactsguidemongodb -d -p 27017:27017 mongo
 
 docker run --name contactsguidereportmongodb -d -p 27018:27017 mongo
 
-docker run --name contactsguiderabbitmq -d -p 5672:5672 rabbitmq:3.8.27-management
+docker run -d --hostname contactsguiderabbithostname --name contactsguiderabbitmq -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=123456 -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 ```
 
 Note: I used RabbitMQ CloudAMQP in this project. You can reset the appsettings.json use by container
