@@ -46,8 +46,6 @@ If you want to use swagger you should go to following url:
 
 - [ ] Prepare xUnit or nUnit Tests
 - [ ] Implement Moq Framework for Unit Tests
-- [ ] AutoMapper
-- [ ] Use Data Transfer Objects in Controllers
 - [ ] Implement Fluent Validation
 - [ ] Implement Autofac
 - [ ] Implement one of IdentityApi, IdentityServer or Manual JWT Handler
