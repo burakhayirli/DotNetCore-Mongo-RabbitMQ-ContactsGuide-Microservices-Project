@@ -21,6 +21,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Report.Api.ServiceAdapters.ContactService;
 
 namespace Report.Api.BackgroundServices
 {
@@ -29,12 +30,14 @@ namespace Report.Api.BackgroundServices
         private readonly RabbitMQClientService _rabbitMQClientService;
         private readonly IReportRepository _reportRepository;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly IContactService _contactService;
         private IModel _channel;
-        public ExcelReportCreatingProcessBackgroundService(RabbitMQClientService rabbitMQClientService,IReportRepository reportRepository, IWebHostEnvironment hostEnvironment)
+        public ExcelReportCreatingProcessBackgroundService(RabbitMQClientService rabbitMQClientService,IReportRepository reportRepository, IWebHostEnvironment hostEnvironment,IContactService contactService)
         {
             _rabbitMQClientService = rabbitMQClientService;
             _reportRepository = reportRepository;
             _hostEnvironment = hostEnvironment;
+            _contactService = contactService;
             Console.WriteLine("BackgroundService is running...");
         }
 
@@ -92,19 +95,11 @@ namespace Report.Api.BackgroundServices
             return Task.CompletedTask;
         }
 
-        private async Task<List<Person>> GetDatas()
-        {
-            HttpClient myCLient = Base.GetClientConnection();
-            List<Person> response = await myCLient.GetFromJsonAsync<List<Person>>("persons");
-
-            return response;
-        }
-
         private DataTable GenerateDataTable(string tableName)
         {
             try
             {
-                List<Person> personList = GetDatas().Result;
+                List<Person> personList = _contactService.GetAll().Result;
 
                 DataTable table = new DataTable { TableName = tableName };
 

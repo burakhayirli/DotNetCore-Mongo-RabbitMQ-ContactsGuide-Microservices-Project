@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
 using Report.Api.BackgroundServices;
 using Report.Api.MQServices;
+using Report.Api.ServiceAdapters.ContactService;
 using Report.Domain;
 using Report.Repository;
 using System;
@@ -50,6 +51,7 @@ namespace Report.Api
 
             services.AddSingleton<IDbContext<Domain.Report>, DbContext<Domain.Report>>();
             services.AddSingleton<IReportRepository, ReportRepository>();
+            services.AddSingleton<IContactService, ContactServiceAdapter>();
 
             services.AddCors(options =>
             {

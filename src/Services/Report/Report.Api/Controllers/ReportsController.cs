@@ -5,6 +5,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Report.Api.HttpRequests;
 using Report.Api.MQServices;
+using Report.Api.ServiceAdapters.ContactService;
 using Report.Domain;
 using Report.Repository;
 using System;
@@ -24,12 +25,13 @@ namespace Report.Api.Controllers
         private readonly IReportRepository _reportRepository;
         private RabbitMQClientService _rabbitMQClientService;
         private RabbitMQPublisher _rabbitMQPublisher;
-
-        public ReportsController(RabbitMQClientService rabbitMQClientService, RabbitMQPublisher rabbitMQPublisher, IReportRepository reportRepository)
+        private readonly IContactService _contactService;
+        public ReportsController(RabbitMQClientService rabbitMQClientService, RabbitMQPublisher rabbitMQPublisher, IReportRepository reportRepository, IContactService contactService)
         {
             _rabbitMQClientService = rabbitMQClientService;
             _rabbitMQPublisher = rabbitMQPublisher;
             _reportRepository = reportRepository;
+            _contactService = contactService;
         }
 
         [HttpGet]
@@ -82,16 +84,19 @@ namespace Report.Api.Controllers
         [HttpGet("GetDatasFromContactApi")]
         public IActionResult GetDatasFromContactApi()
         {
-            HttpClient myCLient = Base.GetClientConnection();
-            HttpResponseMessage response = myCLient.GetAsync("persons").Result;
+            var contactList=_contactService.GetAll();
+            //HttpClient myCLient = Base.GetClientConnection();
+            //HttpResponseMessage response = myCLient.GetAsync("persons").Result;
 
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
 
-            if (response.IsSuccessStatusCode)
+            //if (response.IsSuccessStatusCode)
+            if (contactList.Result!=null)
             {
-                var result = response.Content.ReadAsStringAsync().Result;
-                var persons = JsonConvert.DeserializeObject<ICollection<Person>>(result);
-                return Ok(persons);
+                //var result = response.Content.ReadAsStringAsync().Result;
+                var result = contactList.Result;
+                //var persons = JsonConvert.DeserializeObject<ICollection<Person>>(result);
+                return Ok(result);
             }
             return BadRequest();
         }

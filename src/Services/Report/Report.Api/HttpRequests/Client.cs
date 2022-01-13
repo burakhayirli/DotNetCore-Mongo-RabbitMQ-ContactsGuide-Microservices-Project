@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Report.Api.HttpRequests
 {
-    public class Client
+    public class Client : ClientBase
     {
-        public static HttpClient GetClientConnection()
+        protected HttpClient OpenClient;
+        public Client(string uri)
         {
-            HttpClient client = new HttpClient
-            {
-                BaseAddress = new Uri("http://localhost:5005/api/")
-            };
-
-            return client;
+            OpenClient = ClientBase.GetClientConnection(uri);
+            OpenClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
     }
 }
