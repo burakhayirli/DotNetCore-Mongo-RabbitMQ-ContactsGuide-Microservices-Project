@@ -49,9 +49,8 @@ If you want to use swagger you should go to following url:
 - [ ] Implement Moq Framework for Unit Tests
 - [ ] Implement Fluent Validation
 - [ ] Implement Autofac
-- [ ] Implement one of IdentityApi, IdentityServer or Manual JWT Handler
+- [ ] Implement one of IdentityApi, IdentityServer or Manual JWT Handler (No need for this project)
 - [ ] Prepare dockerfiles and docker-compose.yml files For Each Microservices
-- [ ] Add Global Exception Handler
 - [ ] Modify README.md
 - [ ] Do not be lazy! Work hard!
 - [ ] Do not forget read book!
