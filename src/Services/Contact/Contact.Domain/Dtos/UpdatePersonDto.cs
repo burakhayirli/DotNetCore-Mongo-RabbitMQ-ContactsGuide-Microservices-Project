@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Report.Domain
+namespace Contact.Domain.Dtos
 {
-    public class Person : BaseEntity
+    public class UpdatePersonDto:IDto
     {
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Company { get; set; }
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
-        public List<ContactInfo> ContactInfos { get; set; } = new List<ContactInfo>();
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public List<ContactInfoDto> Contacts { get; set; } = new List<ContactInfoDto>();
     }
 }

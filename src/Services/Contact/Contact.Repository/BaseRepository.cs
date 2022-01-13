@@ -1,4 +1,5 @@
 ﻿using Contact.Domain;
+using Contact.Domain.Entities;
 using ContactGuide.Shared.Utilities.Results;
 using MongoDB.Bson;
 using MongoDB.Driver;

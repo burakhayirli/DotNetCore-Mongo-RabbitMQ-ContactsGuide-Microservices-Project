@@ -1,4 +1,7 @@
-﻿using Contact.Domain;
+﻿using AutoMapper;
+using Contact.Domain;
+using Contact.Domain.Dtos;
+using Contact.Domain.Entities;
 using Contact.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,10 +16,12 @@ namespace Contact.Api.Controllers
     public class PersonsController : ControllerBase
     {
         private readonly IPersonRepository _personRepository;
+        private readonly IMapper _mapper;
 
-        public PersonsController(IPersonRepository personRepository)
+        public PersonsController(IPersonRepository personRepository, IMapper mapper)
         {
             this._personRepository = personRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -31,41 +36,39 @@ namespace Contact.Api.Controllers
         public async Task<IActionResult> Get(string id)
         {
             var result = await _personRepository.GetAsync(id);
-            if (result.Success) return Ok(result.Data);
+            if (result.Success) return Ok(_mapper.Map<ViewPersonDto>(result.Data));
             return BadRequest(result.Message);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Person person)
+        public async Task<IActionResult> Post([FromBody] CreatePersonDto person)
         {
-            var result = await _personRepository.SaveAsync(person);
-            if (result.Success) return Ok(result.Data);
+            var result = await _personRepository.SaveAsync(_mapper.Map<Person>(person));
+            if (result.Success) return Ok(_mapper.Map<ViewPersonDto>(result.Data));
             return BadRequest(result.Message);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(string id, [FromBody] Person updatePerson)
+        public async Task<IActionResult> Put(string id, [FromBody] UpdatePersonDto updatePerson)
         {
             var person = await _personRepository.GetAsync(id);
             if (!person.Success) return BadRequest(person.Message);
 
-            updatePerson.Id = id;
+            var updateModel = _mapper.Map<Person>(updatePerson);
+            updateModel.Id = id;
 
-            var result = await _personRepository.UpdateAsync(updatePerson);
+            var result = await _personRepository.UpdateAsync(updateModel);
 
-            if (result.Success)
-            {
-                return Ok(updatePerson.Id);
-            }
+            if (result.Success) return Ok(updateModel.Id);
 
-            return BadRequest("Cannot update");
+            return BadRequest(result.Message);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             var person = await _personRepository.GetAsync(id);
-            if (person.Data == null) return BadRequest("Person info does not exist");
+            if (person.Data == null) return BadRequest(person.Message);
 
             var result = await _personRepository.DeleteAsync(person.Data);
             if (result.Success) return Ok();

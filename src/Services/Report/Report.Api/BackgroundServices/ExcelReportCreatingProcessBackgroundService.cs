@@ -121,7 +121,7 @@ namespace Report.Api.BackgroundServices
                                                 .Where(
                                                         x => x.Longitude == pLocations.Key.Longitude && 
                                                         x.Latitude == pLocations.Key.Latitude && 
-                                                        x.Contacts.Exists(s=>s.ContactType==ContactType.Phone))
+                                                        x.ContactInfos.Exists(s=>s.ContactType==ContactType.Phone))
                                                .Count()
                            };
                 foreach (var item in list)
