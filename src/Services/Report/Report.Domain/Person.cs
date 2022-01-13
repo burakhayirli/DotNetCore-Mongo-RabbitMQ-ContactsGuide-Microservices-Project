@@ -11,8 +11,8 @@ namespace Report.Domain
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Company { get; set; }
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         public List<ContactInfo> ContactInfos { get; set; } = new List<ContactInfo>();
     }
 }

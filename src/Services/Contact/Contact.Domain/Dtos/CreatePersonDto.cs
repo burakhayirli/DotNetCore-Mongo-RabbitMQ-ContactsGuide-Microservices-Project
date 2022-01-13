@@ -11,6 +11,5 @@ namespace Contact.Domain.Dtos
         public string Company { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public List<ContactInfoDto> Contacts { get; set; } = new List<ContactInfoDto>();
     }
 }

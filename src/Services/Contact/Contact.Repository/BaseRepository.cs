@@ -49,6 +49,7 @@ namespace Contact.Repository
         }
         public async Task<IResult> DeleteAsync(TEntity item)
         {
+            
             var actionResult = await this.context.Entity
                     .DeleteOneAsync(_ => _.Id == item.Id);
 

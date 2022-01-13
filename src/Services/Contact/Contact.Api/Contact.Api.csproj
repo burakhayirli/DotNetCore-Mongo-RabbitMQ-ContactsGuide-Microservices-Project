@@ -8,7 +8,6 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-    <PackageReference Include="TechBuddy.Middlewares.ExceptionHandling" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>

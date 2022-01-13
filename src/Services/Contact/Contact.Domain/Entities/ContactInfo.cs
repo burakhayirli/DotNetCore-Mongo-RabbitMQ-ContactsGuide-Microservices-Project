@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Contact.Domain.Entities
 {
-    public class ContactInfo
+    public class ContactInfo : BaseEntity
     {
         public ContactType ContactType { get; set; }
         public string Info { get; set; }
