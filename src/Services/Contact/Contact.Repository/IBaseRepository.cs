@@ -1,8 +1,6 @@
-﻿using Contact.Domain;
+﻿using Contact.Domain.Entities;
 using ContactGuide.Shared.Utilities.Results;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Contact.Repository

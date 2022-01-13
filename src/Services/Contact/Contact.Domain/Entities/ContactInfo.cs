@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Contact.Domain
+namespace Contact.Domain.Entities
 {
-    public class Contact
+    public class ContactInfo
     {
         public ContactType ContactType { get; set; }
-        public string ContactInfo { get; set; }
+        public string Info { get; set; }
     }
 
     public enum ContactType

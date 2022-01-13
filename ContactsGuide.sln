@@ -13,9 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D201F4DD-3A5E-46C7-AD30-57BB8C5EC4A4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contact", "Contact", "{43FA5999-E0D7-4DF5-BD7F-3F35979D00C0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContactService", "ContactService", "{43FA5999-E0D7-4DF5-BD7F-3F35979D00C0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Report", "Report", "{B52C1568-090C-46AA-A4CE-659E14EC8823}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReportService", "ReportService", "{B52C1568-090C-46AA-A4CE-659E14EC8823}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Report.Api", "src\Services\Report\Report.Api\Report.Api.csproj", "{9506E292-3735-4960-A7C3-05AA7CA370E0}"
 EndProject
@@ -29,9 +29,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{D9F1BA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactGuide.Shared", "src\Shared\ContactGuide.Shared\ContactGuide.Shared.csproj", "{0CE105D1-A895-4553-8AD8-AB349981DB3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report.Domain", "src\Services\Report\Report.Domain\Report.Domain.csproj", "{C2D401AE-B85D-41E8-8EBE-BEFBA8B56712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Report.Domain", "src\Services\Report\Report.Domain\Report.Domain.csproj", "{C2D401AE-B85D-41E8-8EBE-BEFBA8B56712}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report.Repository", "src\Services\Report\Report.Repository\Report.Repository.csproj", "{AC6DB89E-2BD8-4559-A948-89C444D5511C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Report.Repository", "src\Services\Report\Report.Repository\Report.Repository.csproj", "{AC6DB89E-2BD8-4559-A948-89C444D5511C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

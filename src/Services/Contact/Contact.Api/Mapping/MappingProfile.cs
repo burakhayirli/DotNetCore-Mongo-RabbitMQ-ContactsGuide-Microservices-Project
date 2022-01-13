@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using Contact.Domain;
 using Contact.Domain.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Contact.Domain.Entities;
 
 namespace Contact.Api.Mapping
 {
@@ -13,8 +9,9 @@ namespace Contact.Api.Mapping
         public MappingProfile()
         {
             CreateMap<Person, CreatePersonDto>().ReverseMap();
+            CreateMap<Person, UpdatePersonDto>().ReverseMap();
             CreateMap<Person, ViewPersonDto>().ReverseMap();
-            CreateMap<Domain.Contact, ContactDto>().ReverseMap();
+            CreateMap<ContactInfo, ContactInfoDto>().ReverseMap();
         }
     }
 }
