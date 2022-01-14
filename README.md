@@ -56,12 +56,9 @@ If you want to use swagger you should go to following url:
 - Moq
 - FakeItEasy
 - FluentAssertions
-- 
 - Swashbuckle.AspNetCore (Used for Swagger UI)
 
 ## Todos
 
-- [ ] Implement one of IdentityApi, IdentityServer or Manual JWT Handler (No need for this project)
-- [ ] Modify README.md
 - [ ] Do not be lazy! Work hard!
 - [ ] Do not forget read book!
