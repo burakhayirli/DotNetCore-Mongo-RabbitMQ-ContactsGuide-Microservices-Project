@@ -10,8 +10,8 @@ namespace Contact.Repository
 {
     public interface IPersonRepository : IBaseRepository<Person, string>
     {
-        Task<IDataResult<ContactInfo>> SaveContactInfo(string personId, ContactInfo newContactInfo);
-        Task<IResult> UpdateContactInfo(string personId, ContactInfo contactInfo);
-        Task<IResult> DeleteContactInfo(string personId, string contactInfoId);
+        //Task<IDataResult<ContactInfo>> SaveContactInfo(string personId, ContactInfo newContactInfo);
+        //Task<IResult> UpdateContactInfo(string personId, ContactInfo contactInfo);
+        //Task<IResult> DeleteContactInfo(string personId, string contactInfoId);
     }
 }

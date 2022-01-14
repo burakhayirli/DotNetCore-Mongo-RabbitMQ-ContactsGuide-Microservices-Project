@@ -1,8 +1,69 @@
 version: '3.4'
 
 services:
-  report.api:
-    image: ${DOCKER_REGISTRY-}reportapi
+  contactsguide.report.api:
+    image: burakhayirli/dotnetcore-contactsguide-microservice-reportapi
     build:
       context: .
       dockerfile: src/Services/Report/Report.Api/Dockerfile
+    ports:
+     - 5006:80
+    networks:
+     - custom-network
+    depends_on:
+     - contactsguide.mongodb.report.api
+     - contactsguide.rabbitmq
+     
+  contactsguide.contact.api:
+    image: burakhayirli/dotnetcore-contactsguide-microservice-contactapi
+    build:
+      context: .
+      dockerfile: src/Services/Contact/Contact.Api/Dockerfile
+    ports:
+      - 5005:80
+    networks:
+      - custom-network
+    depends_on:
+      - contactsguide.mongodb.contact.api
+  
+      
+  contactsguide.mongodb.contact.api:
+    image: mongo
+    container_name: contactsguide.mongodb.contact.api
+    environment:
+     - MONGO_INITDB_DATABASE=ContactsGuideDb
+    ports:
+     - 27017:27017
+    networks:
+     - custom-network
+
+  contactsguide.mongodb.report.api:
+    image: mongo
+    container_name: contactsguide.mongodb.report.api
+    environment:
+     - MONGO_INITDB_DATABASE=ContactsGuideReportDb
+    ports:
+      - 27018:27017
+    networks:
+      - custom-network
+
+  contactsguide.rabbitmq:
+    image: rabbitmq:3-management
+    container_name: contactsguide.rabbitmq
+    hostname: ContactGuideMQ
+    labels:
+      NAME: "ContactGuideMQ"
+    ports:
+     - 5672:5672
+     - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    environment:
+     RABBITMQ_DEFAULT_USER: admin
+     RABBITMQ_DEFAULT_PASS: 123456
+    networks:
+      - custom-network
+networks:
+  custom-network:
+

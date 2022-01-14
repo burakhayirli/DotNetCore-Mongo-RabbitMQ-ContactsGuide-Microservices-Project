@@ -13,7 +13,7 @@ namespace Contact.Api.ValidationRules.FluentValidation
         {
             RuleFor(p => p.Name).NotNull().NotEmpty().MinimumLength(3);
             RuleFor(p => p.Surname).NotNull().NotEmpty().MinimumLength(3);
-            RuleFor(p => p.Company).NotNull().NotEmpty();
+            RuleFor(p => p.Company).NotNull().NotEmpty().MinimumLength(2);
 
             RuleFor(p => p.Latitude).NotNull().NotEmpty();
             RuleFor(p => p.Latitude).GreaterThanOrEqualTo(-90).LessThanOrEqualTo(90).WithMessage("Longitude must be between -90 and 90 degrees inclusive.");

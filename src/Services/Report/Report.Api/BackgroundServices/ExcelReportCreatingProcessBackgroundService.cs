@@ -88,7 +88,6 @@ namespace Report.Api.BackgroundServices
                         
             //Update Database
             _reportRepository.UpdateAsync(createDocumentModel);
-
             Console.WriteLine($"Output: {createDocumentModel.Id} {createDocumentModel.DocumentStatus} {createDocumentModel.FileName} {createDocumentModel.FilePath}");
             Console.WriteLine("Report Created Successfully");
             return Task.CompletedTask;

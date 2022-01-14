@@ -17,28 +17,28 @@ namespace Contact.Repository
             _context = context;
         }
 
-        public Task<IResult> DeleteContactInfo(string personId, string contactInfoId)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<IResult> DeleteContactInfo(string personId, string contactInfoId)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public async Task<IDataResult<ContactInfo>> SaveContactInfo(string personId, ContactInfo newContactInfo)
-        {
-            var person =  _context.Entity
-                                     .Find(_ => _.Id == personId)
-                                     .FirstOrDefaultAsync().Result;
+        //public async Task<IDataResult<ContactInfo>> SaveContactInfo(string personId, ContactInfo newContactInfo)
+        //{
+        //    var person =  _context.Entity
+        //                             .Find(_ => _.Id == personId)
+        //                             .FirstOrDefaultAsync().Result;
 
-            if (person == null)
-                return new ErrorDataResult<ContactInfo>("Person Not Found");
+        //    if (person == null)
+        //        return new ErrorDataResult<ContactInfo>("Person Not Found");
 
-            person.ContactInfos.Add(newContactInfo);
-            await UpdateAsync(person);
-            return new SuccessDataResult<ContactInfo>(newContactInfo);
-        }
+        //    person.ContactInfos.Add(newContactInfo);
+        //    await UpdateAsync(person);
+        //    return new SuccessDataResult<ContactInfo>(newContactInfo);
+        //}
 
-        public Task<IResult> UpdateContactInfo(string personId, ContactInfo contactInfo)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<IResult> UpdateContactInfo(string personId, ContactInfo contactInfo)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
