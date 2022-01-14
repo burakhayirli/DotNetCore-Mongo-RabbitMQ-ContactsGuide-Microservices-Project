@@ -60,7 +60,6 @@ namespace Contact.Api
             });
             services.AddSingleton(mapperConfig.CreateMapper());
 
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Contact.Api", Version = "v1" });

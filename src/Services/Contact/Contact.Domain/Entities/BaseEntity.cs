@@ -9,8 +9,8 @@ namespace Contact.Domain.Entities
 {
     public abstract class BaseEntity : IEntity
     {
-        //[BsonId]
-        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
+        [BsonId]
+        //[BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
         [BsonRepresentation(BsonType.ObjectId)]
         private string _id { get; set; }
         public string Id

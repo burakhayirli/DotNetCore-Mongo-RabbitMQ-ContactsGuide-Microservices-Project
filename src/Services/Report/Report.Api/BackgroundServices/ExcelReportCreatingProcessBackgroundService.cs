@@ -56,7 +56,6 @@ namespace Report.Api.BackgroundServices
 
             return Task.CompletedTask;
         }
-
         private Task Consumer_Received(object sender, BasicDeliverEventArgs @event)
         {
             var createDocumentModel = JsonSerializer.Deserialize<Domain.Report>(Encoding.UTF8.GetString(@event.Body.ToArray()));

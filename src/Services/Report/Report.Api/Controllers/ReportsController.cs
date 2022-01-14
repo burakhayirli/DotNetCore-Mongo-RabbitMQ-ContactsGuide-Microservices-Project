@@ -85,17 +85,9 @@ namespace Report.Api.Controllers
         public IActionResult GetDatasFromContactApi()
         {
             var contactList=_contactService.GetAll();
-            //HttpClient myCLient = Base.GetClientConnection();
-            //HttpResponseMessage response = myCLient.GetAsync("persons").Result;
-
-            //response.EnsureSuccessStatusCode();
-
-            //if (response.IsSuccessStatusCode)
             if (contactList.Result!=null)
             {
-                //var result = response.Content.ReadAsStringAsync().Result;
                 var result = contactList.Result;
-                //var persons = JsonConvert.DeserializeObject<ICollection<Person>>(result);
                 return Ok(result);
             }
             return BadRequest();

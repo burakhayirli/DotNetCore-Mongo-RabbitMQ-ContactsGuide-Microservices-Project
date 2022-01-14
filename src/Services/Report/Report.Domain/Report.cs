@@ -10,7 +10,7 @@ namespace Report.Domain
     {
         public string FileName { get; set; }
         public string FilePath { get; set; }
-        public DateTime? RequestDate { get; set; } = DateTime.UtcNow;
+        public DateTime? RequestDate { get; set; } = DateTime.Now;
         public DateTime? CreatedDate { get; set; }
         public DocumentStatus DocumentStatus { get; set; }        
     }

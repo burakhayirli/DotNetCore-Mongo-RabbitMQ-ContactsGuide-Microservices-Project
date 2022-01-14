@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  report.api:
+    image: ${DOCKER_REGISTRY-}reportapi
+    build:
+      context: .
+      dockerfile: src/Services/Report/Report.Api/Dockerfile
