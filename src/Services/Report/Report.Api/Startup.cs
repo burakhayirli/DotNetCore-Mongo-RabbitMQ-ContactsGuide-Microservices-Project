@@ -44,18 +44,20 @@ namespace Report.Api
                 });
 
             //for using cloudamqp
-            //services.AddSingleton(sp => new ConnectionFactory() { 
-            //    Uri= new Uri(Configuration.GetConnectionString("RabbitMQ")), 
-            //    DispatchConsumersAsync = true,
-            //});
-
             services.AddSingleton(sp => new ConnectionFactory()
-            {                
-                HostName = Configuration.GetSection("RabbitMQ:HostName").Value,
-                UserName = Configuration.GetSection("RabbitMQ:Username").Value,
-                Password = Configuration.GetSection("RabbitMQ:Password").Value,
+            {
+                Uri = new Uri(Configuration.GetConnectionString("RabbitMQ")),
                 DispatchConsumersAsync = true,
             });
+
+            //for use dockerized rabbitmq
+            //services.AddSingleton(sp => new ConnectionFactory()
+            //{                
+            //    HostName = Configuration.GetSection("RabbitMQ:HostName").Value,
+            //    UserName = Configuration.GetSection("RabbitMQ:Username").Value,
+            //    Password = Configuration.GetSection("RabbitMQ:Password").Value,
+            //    DispatchConsumersAsync = true,
+            //});
 
             services.AddControllers();
             services.AddSingleton<RabbitMQClientService>();
