@@ -1,4 +1,5 @@
-﻿using Report.Api.HttpRequests;
+﻿using Microsoft.Extensions.Configuration;
+using Report.Api.HttpRequests;
 using Report.Domain;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,22 @@ using System.Threading.Tasks;
 
 namespace Report.Api.ServiceAdapters.ContactService
 {
-    public class ContactServiceAdapter : Client, IContactService
+    public class ContactServiceAdapter : IContactService
     {
-        private const string URI_STRING = "http://localhost:5005/api/";
-        public ContactServiceAdapter() : base(URI_STRING)
+        //private readonly string URI_STRING = "http://localhost:5005/api/";
+        public string UriString { get; set; }
+        private readonly IConfiguration _configuration;
+        public ContactServiceAdapter(IConfiguration configuration)//: base(UriString)
         {
+            //this.UriString = UriString;    
+            _configuration = configuration;
+            UriString = _configuration.GetSection("OuterServices:ContactServiceEndpoint").Value;
             Console.WriteLine("ContactServiceAdapter has been triggered");
+            Console.WriteLine("******************************************");
         }
         public async Task<List<Person>> GetAll()
         {
-            HttpClient cLient = GetClientConnection(URI_STRING);
+            HttpClient cLient = Client.GetClientConnection(UriString);
             List<Person> response = await cLient.GetFromJsonAsync<List<Person>>("persons");
 
             return response;

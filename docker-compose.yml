@@ -42,11 +42,17 @@ services:
       - custom-network
   contactsguide.report.api:
     image: burakhayirli/dotnetcore-contactsguide-microservice-reportapi
+    container_name: contactsguide.report.api
+    restart: always
     build:
       context: .
       dockerfile: src/Services/Report/Report.Api/Dockerfile
     ports:
      - 5006:80
+    environment:
+     - RabbitMQ:HostName=contactsguide.rabbitmq
+     - MongoConnection:ConnectionString=mongodb://contactsguide.mongodb.report.api
+     - OuterServices:ContactServiceEndpoint=http://contactsguide.contact.api/api/
     volumes:
      - reportapi_volume:/app/wwwroot/documents
     networks:
@@ -56,11 +62,14 @@ services:
      - contactsguide.rabbitmq
   contactsguide.contact.api:
     image: burakhayirli/dotnetcore-contactsguide-microservice-contactapi
+    container_name: contactsguide.contact.api
     build:
       context: .
       dockerfile: src/Services/Contact/Contact.Api/Dockerfile
     ports:
       - 5005:80
+    environment:
+     - MongoConnection:ConnectionString=mongodb://contactsguide.mongodb.contact.api
     networks:
       - custom-network
     depends_on:

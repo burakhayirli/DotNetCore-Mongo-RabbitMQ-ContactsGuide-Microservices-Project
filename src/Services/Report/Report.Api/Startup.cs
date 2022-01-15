@@ -43,20 +43,17 @@ namespace Report.Api
                     options.JsonSerializerOptions.IgnoreNullValues = true;
                 });
 
-            //for using cloudamqp
             services.AddSingleton(sp => new ConnectionFactory()
             {
-                Uri = new Uri(Configuration.GetConnectionString("RabbitMQ")),
+                //Uri = new Uri(Configuration.GetSection("amqp_cloud_url").Value),
+                HostName = Configuration.GetSection("RabbitMQ:HostName").Value,
+                UserName = Configuration.GetSection("RabbitMQ:Username").Value,
+                Password = Configuration.GetSection("RabbitMQ:Password").Value,
                 DispatchConsumersAsync = true,
             });
 
-            //for use dockerized rabbitmq
-            //services.AddSingleton(sp => new ConnectionFactory()
-            //{                
-            //    HostName = Configuration.GetSection("RabbitMQ:HostName").Value,
-            //    UserName = Configuration.GetSection("RabbitMQ:Username").Value,
-            //    Password = Configuration.GetSection("RabbitMQ:Password").Value,
-            //    DispatchConsumersAsync = true,
+            //services.AddSingleton(sp=>new ContactServiceAdapter() {
+            //    UriString = Configuration.GetSection("OuterServices:ContactServiceEndpoint").Value
             //});
 
             services.AddControllers();

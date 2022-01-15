@@ -14,7 +14,6 @@ namespace Report.Api.MQServices
         private IModel _channel;
         IModel channel => _channel ?? (_channel = GetChannel());
         public static string CreateDocumentQueueName = "create_document_queue";
-        //public static string documentCreated = "created_document_queue";
         public static string DocumentCreateExchange = "document_create_exchange";
         public static string RoutingDocument = "document_route";
 
@@ -37,7 +36,6 @@ namespace Report.Api.MQServices
             
             return _channel;
         }
-
         private IModel GetChannel()
         {
             return _connection.CreateModel();
