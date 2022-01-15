@@ -14,16 +14,13 @@ namespace Report.Api.ServiceAdapters.ContactService
 {
     public class ContactServiceAdapter : IContactService
     {
-        //private readonly string URI_STRING = "http://localhost:5005/api/";
         public string UriString { get; set; }
         private readonly IConfiguration _configuration;
-        public ContactServiceAdapter(IConfiguration configuration)//: base(UriString)
+        public ContactServiceAdapter(IConfiguration configuration)
         {
-            //this.UriString = UriString;    
             _configuration = configuration;
             UriString = _configuration.GetSection("OuterServices:ContactServiceEndpoint").Value;
             Console.WriteLine("ContactServiceAdapter has been triggered");
-            Console.WriteLine("******************************************");
         }
         public async Task<List<Person>> GetAll()
         {

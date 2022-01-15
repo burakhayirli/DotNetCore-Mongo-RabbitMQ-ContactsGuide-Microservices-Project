@@ -52,10 +52,6 @@ namespace Report.Api
                 DispatchConsumersAsync = true,
             });
 
-            //services.AddSingleton(sp=>new ContactServiceAdapter() {
-            //    UriString = Configuration.GetSection("OuterServices:ContactServiceEndpoint").Value
-            //});
-
             services.AddControllers();
             services.AddSingleton<RabbitMQClientService>();
             services.AddSingleton<RabbitMQPublisher>();
