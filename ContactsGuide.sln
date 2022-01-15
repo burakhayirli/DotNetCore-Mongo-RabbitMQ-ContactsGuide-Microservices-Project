@@ -35,9 +35,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Report.Repository", "src\Se
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F69CD98E-707D-4976-82EB-66DDD97A5BF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report.Api.xUnitTests", "src\Services\ReportService\Report.Api.xUnitTests\Report.Api.xUnitTests.csproj", "{31FCDF1A-05ED-4CDD-8B0B-50020826F9E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Report.Api.xUnitTests", "src\Services\ReportService\Report.Api.xUnitTests\Report.Api.xUnitTests.csproj", "{31FCDF1A-05ED-4CDD-8B0B-50020826F9E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Api.xUnitTests", "src\Services\ContactService\Contact.Api.xUnitTests\Contact.Api.xUnitTests.csproj", "{915D1A76-B877-4C10-8C5A-B16D200F1C96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contact.Api.xUnitTests", "src\Services\ContactService\Contact.Api.xUnitTests\Contact.Api.xUnitTests.csproj", "{915D1A76-B877-4C10-8C5A-B16D200F1C96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{4B985BE3-55CB-496C-A829-8BB3F1889484}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactGuide.Gateway", "src\Gateways\ContactGuide.Gateway\ContactGuide.Gateway.csproj", "{BB54E280-260F-42DA-ABDC-57116DDD6B6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +89,10 @@ Global
 		{915D1A76-B877-4C10-8C5A-B16D200F1C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{915D1A76-B877-4C10-8C5A-B16D200F1C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{915D1A76-B877-4C10-8C5A-B16D200F1C96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB54E280-260F-42DA-ABDC-57116DDD6B6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB54E280-260F-42DA-ABDC-57116DDD6B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB54E280-260F-42DA-ABDC-57116DDD6B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB54E280-260F-42DA-ABDC-57116DDD6B6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +111,8 @@ Global
 		{AC6DB89E-2BD8-4559-A948-89C444D5511C} = {B52C1568-090C-46AA-A4CE-659E14EC8823}
 		{31FCDF1A-05ED-4CDD-8B0B-50020826F9E3} = {B52C1568-090C-46AA-A4CE-659E14EC8823}
 		{915D1A76-B877-4C10-8C5A-B16D200F1C96} = {43FA5999-E0D7-4DF5-BD7F-3F35979D00C0}
+		{4B985BE3-55CB-496C-A829-8BB3F1889484} = {BF51CE18-9902-4E1A-9AEE-C4787FDE8B46}
+		{BB54E280-260F-42DA-ABDC-57116DDD6B6F} = {4B985BE3-55CB-496C-A829-8BB3F1889484}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09AB19CC-1F2E-49D3-9790-27684DDF38C3}

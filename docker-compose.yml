@@ -24,7 +24,7 @@ services:
     volumes:
      - reportapidb_volume:/data/db
     networks:
-      - custom-network
+     - custom-network
   contactsguide.rabbitmq:
     image: rabbitmq:3-management
     container_name: contactsguide.rabbitmq
