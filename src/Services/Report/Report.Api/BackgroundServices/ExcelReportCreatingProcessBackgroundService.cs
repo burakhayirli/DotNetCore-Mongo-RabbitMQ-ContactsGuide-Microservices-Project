@@ -63,7 +63,7 @@ namespace Report.Api.BackgroundServices
         private async Task Consumer_Received(object sender, BasicDeliverEventArgs @event)
         {
             var createDocumentModel = JsonSerializer.Deserialize<Domain.Report>(Encoding.UTF8.GetString(@event.Body.ToArray()));
-
+            await _hubContext.Clients.All.SendAsync("Creating");
             Console.WriteLine("Rapor oluşturma talebi karşılandı. Veriler excel formatında rapora dönüştürülüyor...");
             Console.WriteLine($"İstek Bilgisi: {createDocumentModel.Id} {createDocumentModel.DocumentStatus}");
             Task.Delay(2000).Wait();

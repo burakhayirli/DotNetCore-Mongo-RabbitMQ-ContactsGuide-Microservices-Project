@@ -70,6 +70,16 @@
                     timer: 1500
                 });
             });
+
+            connection.on("Creating", () => {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'info',
+                    title: 'Report document is creating. When it is ready, we will nofity you',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
         });
 
     </script>
