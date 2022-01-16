@@ -1,5 +1,6 @@
 using ContactGuide.Shared.Extensions;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,7 @@ namespace Report.Api
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -72,14 +74,14 @@ namespace Report.Api
 
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins().AllowAnyOrigin()
-                                            .AllowAnyHeader()
-                                            .AllowAnyMethod();
-                    });
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                 builder =>
+                                 {
+                                     builder.WithOrigins("http://localhost:5001",
+                                                         "http://localhost:5006").AllowAnyHeader().AllowCredentials();
+                                 });
             });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Report.Api", Version = "v1" });
@@ -100,23 +102,24 @@ namespace Report.Api
 
             app.UseCustomExceptionMiddleware();
 
-            app.UseCors();
-
-            app.UseFileServer(new FileServerOptions { 
-                FileProvider=new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),"wwwroot/documents")),
-                RequestPath="/wwwroot/documents",
-                EnableDefaultFiles=true
+            app.UseFileServer(new FileServerOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/documents")),
+                RequestPath = "/wwwroot/documents",
+                EnableDefaultFiles = true
             });
 
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<DocumentHub>("/DocumentHub");  
+                endpoints.MapHub<DocumentHub>("/DocumentHub");
                 endpoints.MapControllers();
             });
         }
