@@ -44,7 +44,8 @@ If you want to use swagger you should go to following url:
 
 # Used Technologies and Packages Stack
 
-- Asp.Net Core 5 (.Net 5)
+- Asp.Net Core 5 Web API (.Net 5)
+- Asp.Net Core 5 MVC
 - MongoDb.Driver
 - AutoMapper
 - Autofac
@@ -56,6 +57,8 @@ If you want to use swagger you should go to following url:
 - Moq
 - FakeItEasy
 - FluentAssertions
+- Ocelot
+- SignalR
 - Swashbuckle.AspNetCore (Used for Swagger UI)
 
 ## Todos
