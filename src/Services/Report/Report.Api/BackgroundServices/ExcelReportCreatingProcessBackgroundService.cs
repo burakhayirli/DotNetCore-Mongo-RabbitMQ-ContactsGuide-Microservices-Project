@@ -22,6 +22,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Report.Api.ServiceAdapters.ContactService;
+using Microsoft.AspNetCore.SignalR;
+using Report.Api.Hubs;
 
 namespace Report.Api.BackgroundServices
 {
@@ -31,13 +33,15 @@ namespace Report.Api.BackgroundServices
         private readonly IReportRepository _reportRepository;
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly IContactService _contactService;
+        private readonly IHubContext<DocumentHub> _hubContext;
         private IModel _channel;
-        public ExcelReportCreatingProcessBackgroundService(RabbitMQClientService rabbitMQClientService,IReportRepository reportRepository, IWebHostEnvironment hostEnvironment,IContactService contactService)
+        public ExcelReportCreatingProcessBackgroundService(RabbitMQClientService rabbitMQClientService,IReportRepository reportRepository, IWebHostEnvironment hostEnvironment,IContactService contactService, IHubContext<DocumentHub> hubContext)
         {
             _rabbitMQClientService = rabbitMQClientService;
             _reportRepository = reportRepository;
             _hostEnvironment = hostEnvironment;
             _contactService = contactService;
+            _hubContext = hubContext;
             Console.WriteLine("BackgroundService is running...");
         }
 
@@ -56,7 +60,7 @@ namespace Report.Api.BackgroundServices
 
             return Task.CompletedTask;
         }
-        private Task Consumer_Received(object sender, BasicDeliverEventArgs @event)
+        private async Task Consumer_Received(object sender, BasicDeliverEventArgs @event)
         {
             var createDocumentModel = JsonSerializer.Deserialize<Domain.Report>(Encoding.UTF8.GetString(@event.Body.ToArray()));
 
@@ -87,11 +91,15 @@ namespace Report.Api.BackgroundServices
             createDocumentModel.CreatedDate = DateTime.Now;
                         
             //Update Database
-            _reportRepository.UpdateAsync(createDocumentModel);
+           await _reportRepository.UpdateAsync(createDocumentModel);
 
             Console.WriteLine($"Output: {createDocumentModel.Id} {createDocumentModel.DocumentStatus} {createDocumentModel.FileName} {createDocumentModel.FilePath}");
             Console.WriteLine("Report Created Successfully");
-            return Task.CompletedTask;
+
+            //SignalR Notification
+            await _hubContext.Clients.All.SendAsync("Completed");
+
+            //return Task.CompletedTask;
         }
 
         private DataTable GenerateDataTable(string tableName)

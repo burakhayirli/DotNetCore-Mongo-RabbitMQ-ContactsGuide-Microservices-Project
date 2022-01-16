@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RabbitMQ.Client;
 using Report.Api.BackgroundServices;
+using Report.Api.Hubs;
 using Report.Api.MQServices;
 using Report.Api.ServiceAdapters.ContactService;
 using Report.Domain;
@@ -67,6 +68,8 @@ namespace Report.Api
             services.AddSingleton<IReportRepository, ReportRepository>();
             services.AddSingleton<IContactService, ContactServiceAdapter>();
 
+            services.AddSignalR();
+
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -113,6 +116,7 @@ namespace Report.Api
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<DocumentHub>("/DocumentHub");  
                 endpoints.MapControllers();
             });
         }
