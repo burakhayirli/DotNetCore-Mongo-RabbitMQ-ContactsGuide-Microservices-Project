@@ -63,6 +63,7 @@ services:
   contactsguide.contact.api:
     image: burakhayirli/dotnetcore-contactsguide-microservice-contactapi
     container_name: contactsguide.contact.api
+    restart: always
     build:
       context: .
       dockerfile: src/Services/Contact/Contact.Api/Dockerfile
@@ -77,11 +78,14 @@ services:
   contactguide.gateway:
     image: burakhayirli/dotnetcore-contactsguide-gateway
     container_name: contactguide.gateway
+    restart: always
     build:
       context: .
       dockerfile: src/Gateways/ContactGuide.Gateway/Dockerfile
     ports:
       - 5000:80
+    networks:
+      - custom-network
     volumes:
      - gateway_volume:/app
 volumes:

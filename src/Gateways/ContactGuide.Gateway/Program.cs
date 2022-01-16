@@ -20,7 +20,8 @@ namespace ContactGuide.Gateway
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    config.AddJsonFile($"configuration.{hostingContext.HostingEnvironment.EnvironmentName.ToLower()}.json")
+                    config
+                    .AddJsonFile($"configuration.{hostingContext.HostingEnvironment.EnvironmentName.ToLower()}.json",true,true)
                     .AddEnvironmentVariables();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
