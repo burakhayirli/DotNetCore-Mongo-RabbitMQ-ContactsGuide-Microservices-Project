@@ -2,3 +2,4 @@ Services
 	Contact.Api => 5005	
 	Report.Api => 5006
 Gateway 5000
+CoreMvcWebUI 5001

@@ -75,9 +75,9 @@ services:
       - custom-network
     depends_on:
       - contactsguide.mongodb.contact.api
-  contactguide.gateway:
+  contactsguide.gateway:
     image: burakhayirli/dotnetcore-contactsguide-gateway
-    container_name: contactguide.gateway
+    container_name: contactsguide.gateway
     restart: always
     build:
       context: .
@@ -88,6 +88,18 @@ services:
       - custom-network
     volumes:
      - gateway_volume:/app
+  contactsguide.coremvcwebui:
+    image: burakhayirli/dotnetcore-contactsguide-coremvcwebui
+    container_name: contactsguide.coremvcwebui
+    restart: always
+    build:
+      context: .
+      dockerfile: src/Frontends/ContactsGuide.CoreMvcWebUI/Dockerfile
+    ports:
+      - 5001:80
+    networks:
+      - custom-network
+
 volumes:
   contactapidb_volume:
   reportapidb_volume:
@@ -95,5 +107,6 @@ volumes:
   gateway_volume:
 networks:
   custom-network:
+
 
 
